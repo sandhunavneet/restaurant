@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--  ng is used for application like foodieapp-->
+<html lang="en" ng-app='foodieApp'>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- title is added -->
+
+
+    <title>Foodie</title>
+    <!--  files are linkd-->
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="main.css">
+    <script src="js/angular.min.js"></script>
+    <!--in this angular-route file is attached
+    -->
+    <script src="https://code.angularjs.org/1.6.5/angular-route.js"></script>
+
+<!-- style is added for the border -->
+    <style>
+
+    /*ng-invalid is a directive that wokrs like gift open*/
+        input.ng-invalid.ng-dirty {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+
+<!-- in this section view is created -->
+<body id="app">
+   <div ng-view></div>
+   <!-- files are attacjed -->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="main.js"></script>
+</body>
+<!-- html tAG closee -->
+</html>

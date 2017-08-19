@@ -1,0 +1,133 @@
+
+<div class='colored'>
+  <nav class="navbar navbar-default navbar-fixed">
+       <div class="container-fluid col-sm-12">
+         <!-- Brand and toggle get grouped for better mobile display -->
+           <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                     <span class="sr-only">Toggle navigation</span>
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+               </button>
+               <a class="navbar-brand" href="#">Foodie</a>
+           </div>
+           <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+               <ul class="nav navbar-nav navbar-right">
+                   <li><a href="#!/home">Home</a></li>
+                   <li><a href="#!/about">About</a></li>
+                   <li><a href="#!/order">Order Online</a></li>
+                   <li><a href="#!/">Logout</a></li>
+               </ul>
+           </div>
+         <!-- /.navbar-collapse -->
+       </div>
+     <!-- /.container-fluid -->
+   </nav>
+
+ <!-- ng-if is used which will display the information of the restaurant only if its name exist -->
+<div class="restaurant" ng-if="restaurant.name">
+    <div class="rest-wrapper">
+       <!-- this will display the image of the dish of selected restaurant -->
+        <div class="image">
+            <img ng-src="{{restaurant.image}}" height="100" width="100">
+        </div>
+        <!-- this will display the information of the selected restaurant -->
+        <div class="rest-info">
+          <!-- this will display the category of the selected restaurant -->
+            <div class="rest-category">
+               <small>{{restaurant.category}} </small>
+            </div>
+            <!-- this will display the name of the selected restaurant -->
+            <div class="rest-name">
+            <strong>{{restaurant.name}}</strong>
+            </div>
+            <div>
+              <!-- this will display the location of the selected restaurant -->
+               <strong> {{restaurant.location}}</strong>
+            </div>
+            <!-- this will display the address of the selected restaurant -->
+            <div class="rest-address">
+                {{restaurant.address}}
+            </div>
+        </div>
+    </div><br>
+    <!-- this is the panel which will display the disabled options such as overview, booking,etc -->
+    <div class="panel-footer">
+                 <div>
+                   <div class="btn-group" >
+                     <!-- this is the disabled button for overview -->
+                     <button type="button" class="btn btn-default" disabled>
+                        <strong>Overview</strong>
+                     </button>
+                   </div>
+                   <div class="btn-group">
+                     <!-- this is the disabled button for book a table-->
+                     <button type="button" class="btn btn-default" disabled>
+                         <strong>Book a Table</strong>
+                     </button>
+                   </div>
+                   <div class="btn-group">
+                     <!-- this is the disabled button for menu of the restaurant-->
+                     <button type="button" class="btn btn-default" disabled>
+                         <strong>Menu</strong>
+                     </button>
+                   </div>
+                   <div class="btn-group">
+                     <!-- this is the disabled button for reviews of the restaurant -->
+                     <button type="button" class="btn btn-default" disabled>
+                         <strong>Reviews</strong>
+                     </button>
+                   </div>
+                   <div class="btn-group">
+                     <!-- this is the disabled button for viewing the photos related to that restaurant -->
+                     <button type="button" class="btn btn-default" disabled>
+                         <strong>Photos</strong>
+                     </button>
+                   </div>
+                 </div>
+                 <div class="rest-extra">
+                   <!-- this will display the extra information of the rstaurant such as timing , costs ,etc -->
+                 <div class="type">
+                     <div><small>Cuisines:</small></div>
+                     <div><small>Cost for Two: </small></div>
+                     <div><small>Hours:</small></div>
+                      <!-- this will display the recommended dish only if the restaurant has best dish in its array of objects -->
+                     <div ng-if="restaurant.bestDish"><small>Recommended: </small></div>
+                 </div>
+                 <div class="value">
+                    <!-- this will display the value of extra information of the rstaurant such as timing , costs ,etc -->
+                       <div>{{restaurant.cuisines}}</div>
+                       <div>Rs {{restaurant.cost | number}}</div>
+                       <div>{{restaurant.hours}}</div>
+                        <!-- this will display the name of the best dish only if restaurant controller has the best dish for that particular restaurant -->
+                       <div class="bestDish" ng-if="restaurant.bestDish">
+                        <span>{{restaurant.bestDish.name}} </span>
+                         <!-- this will display the image of best dish for that particular restaurant on clicking the button -->
+                        <div ng-click="flag=!flag" class="button">Image</div>
+                        <div ng-show="flag">
+                          <img ng-src="{{restaurant.bestDish.image}}" style="margin-top: 30px;width:300px; height:200px;">
+                          <ul class="list-buttons">
+                             <!-- this is a button  which on click goes to function getIngredients with restaurant.bestDish.image as its parameter-->
+                              <li style="padding : 10px 0; display:inline-block;"><div ng-click="getIngredients(restaurant.bestDish.image)"class="button">Get Ingredients to check for veg/non-veg</div></li>
+                          </ul>
+                    </div>
+               </div>
+         </div>
+    </div>
+     <!-- this will display the vote for the restaurant -->
+    <div class="rating">
+        <strong>{{restaurant.vote}}</strong>
+    </div>
+     <!-- this will display the ingredients of the best dish only if it exists-->
+    <div ng-if="ingredients">
+       <!-- this will display the list of ingredients -->
+       <ol>
+         <li ng-repeat="ingredient in ingredients">
+           {{ingredient}}
+         </li>
+       </ol>
+   </div>
+</div>
+</div>
